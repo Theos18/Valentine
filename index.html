@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose: #ff4d6d;
+            --blush: #ffb3c1;
+            --cream: #fff0f3;
+            --gold: #ffd700;
+            --deep-rose: #c9184a;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Background Image - Blurred */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('IMG-20251222-WA0007.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.7);
+            z-index: -1;
+        }
+
+        /* Overlay for better readability */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 77, 109, 0.3), rgba(201, 24, 74, 0.4));
+            z-index: 0;
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Main Content Card */
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 3rem;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1.2s ease-out;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .heart-icon {
+            font-size: 4rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            color: var(--rose);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--deep-rose);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 1.4s ease-out 0.2s backwards;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--rose);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.6s ease-out 0.4s backwards;
+        }
+
+        .message {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.8s ease-out 0.6s backwards;
+        }
+
+        .question {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-rose);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            animation: fadeInUp 2s ease-out 0.8s backwards;
+        }
+
+        .signature {
+            font-size: 1.6rem;
+            color: var(--rose);
+            font-style: italic;
+            margin-top: 2rem;
+            animation: fadeInUp 2.2s ease-out 1s backwards;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            font-size: 2rem;
+            color: var(--rose);
+            opacity: 0;
+            animation: float 6s linear infinite;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.15);
+            }
+        }
+
+        /* Decorative elements */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 2s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .question {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="background"></div>
+    <div class="overlay"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content">
+            <div class="heart-icon">💕</div>
+            <h1>My Dearest Drashti</h1>
+            <div class="subtitle">The Love of My Life</div>
+            
+            <div class="message">
+                ફક્ત આજે નહીં.
+ફક્ત આ વર્ષે નહીં.
+મને ઋતુઓ જેવી આવતી-જતી લાગણી નથી જોઈએ.
+
+જો હું તને પસંદ કરું છું —
+તો તે કોઈ એક દિવસ માટે નહીં,
+પણ 7 જન્મ માટે છે.
+સામાન્ય દિવસો માટે, ગૂંચવાયેલા ક્ષણો માટે, અને બધાની વચ્ચે જે આવે તે માટે.
+
+એટલે નહીં — તું ફક્ત આજની વેલેન્ટાઇન નથી.
+તું એ છે જેને હું હંમેશા પસંદ કરતો રહીશ.
+
+            </div>
+            
+            <div class="question">
+                Will You Be My Valentine?
+            </div>
+            
+            <div class="signature">
+                Forever yours ❤️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Generate hearts periodically
+        setInterval(createHeart, 800);
+        
+        // Generate sparkles periodically
+        setInterval(createSparkle, 300);
+        
+        // Initial burst
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createHeart, i * 200);
+        }
+        
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSparkle, i * 100);
+        }
+    </script>
+</body>
+</html>
